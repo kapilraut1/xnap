@@ -1,4 +1,6 @@
 const dotenv = require("dotenv");
+dotenv.config(); // Load env variables first
+
 const express = require("express");
 const logger = require("./helper/logger");
 const requestLogger = require("./helper/requestLogger");
@@ -6,15 +8,13 @@ const morgan = require("morgan");
 const apiAuth = require("./helper/apiAuthentication");
 const mongoose = require("mongoose");
 const cors = require("cors");
+
 const {
   MONGO_IP,
   MONGO_PASSWORD,
   MONGO_PORT,
   MONGO_USER,
 } = require("./config/config");
-
-const path = require("path");
-dotenv.config();
 
 const usersRouter = require("./routes/userRouter");
 const gorupRouter = require("./routes/groupRouter");
@@ -27,9 +27,9 @@ app.use(express.json());
 app.use(requestLogger);
 
 // const connectionString = `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_IP}:${MONGO_PORT}/casplit?authSource=admin`
-// const connectionString = `mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}@xnap.e3ov2nj.mongodb.net/?appName=xnap`;
+const connectionString = `mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}@xnap.e3ov2nj.mongodb.net/?appName=xnap`;
 
-const connectionString = `mongodb+srv://rautkapil124_db_user:aaKOcJuK9CGFUbfV@xnap.e3ov2nj.mongodb.net/?appName=xnap`;
+// const connectionString = `mongodb+srv://rautkapil124_db_user:aaKOcJuK9CGFUbfV@xnap.e3ov2nj.mongodb.net/?appName=xnap`;
 
 mongoose
   .connect(
